@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>curl2code</title>
+
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/atom-one-dark.min.css">
+    <script src="src/js/curlToCode.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary: #1a202c;
+            --secondary: #2d3748;
+        }
+
+        * {
+            scrollbar-color: var(--secondary) var(--primary);
+        }
+
+        *::-webkit-scrollbar-track {
+            background: var(--primary);
+        }
+
+        *::-webkit-scrollbar-thumb {
+            background-color: var(--secondary);
+        }
+    </style>
+</head>
+<body class="bg-gray-800">
+<main class="flex flex-col items-center gap-6 py-5 container mx-auto">
+    <h1 class="text-4xl text-white font-bold leading-relaxed">Curl To Code</h1>
+    <div class="flex gap-3 leading-none text-white">
+        <label>
+            <input type="radio" name="language" value="php" class="sr-only peer" checked>
+            <span class="bg-white/30 rounded-md cursor-pointer py-1.5 px-3.5 peer-checked:bg-blue-600 peer-checked:text-white hover:bg-white/40 duration-100">
+                PHP
+            </span>
+        </label>
+        <label>
+            <input type="radio" name="language" value="js" class="sr-only peer">
+            <span class="bg-white/30 rounded-md cursor-pointer py-1.5 px-3.5 peer-checked:bg-blue-600 peer-checked:text-white hover:bg-white/40 duration-100">
+                JavaScript
+            </span>
+        </label>
+    </div>
+    <textarea
+            id="curl" rows="12" spellcheck="false"
+            class="self-stretch border border-white/10 rounded-md p-3.5 focus:placeholder:opacity-0 outline-none focus:border-blue-500 text-lg duration-100 text-white bg-white/5"></textarea>
+    <div class="flex self-stretch overflow-auto text-white border border-white/10 bg-white/5 rounded-md p-3.5 relative wrapper duration-100">
+        <button class="absolute top-3 right-3 bg-blue-500/15 duration-100 hover:bg-blue-500/25 rounded-md border border-white/20 p-1.5 hidden copyToClipboard"
+                onclick="copyToClipboard()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+                <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
+                <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+            </svg>
+        </button>
+        <pre class="w-0 flex-1"><code
+                    data-placeholder="Generated code will appear here."
+                    class="before:content-[attr(data-placeholder)] before:hidden empty:before:inline"
+                    id="result"></code></pre>
+    </div>
+</main>
+</body>
+<script>
+    const input = document.querySelector("#curl");
+    const result = document.querySelector("#result");
+    const wrapper = document.querySelector(".wrapper");
+    const copyToClipboardButton = document.querySelector(".copyToClipboard");
+    // dil tercihi değişimini dinle
+    document.querySelectorAll('input[name="language"]').forEach((el) => el.addEventListener("change", convert));
+    // curl alanı değişimini dinle
+    input.addEventListener("input", convert);
+
+    function convert() {
+        const curl = input.value;
+        const language = document.querySelector('input[name="language"]:checked').value;
+        // const output = curlToCode(language, curl);
+        try {
+            const output = curlToCode(language, curl);
+            const coloredOutput = hljs.highlight(output, {language: language, ignoreIllegals: true});
+            result.innerHTML = coloredOutput.value;
+
+            result.classList.remove("text-red-300");
+
+            console.log(output.length);
+            if (output.length > 0)
+                copyToClipboardButton.classList.remove('hidden');
+            else
+                copyToClipboardButton.classList.add('hidden');
+        } catch (e) {
+            result.innerText = e;
+            result.classList.add("text-red-300");
+            copyToClipboardButton.classList.add('hidden');
+        }
+
+    }
+
+    function copyToClipboard() {
+        const el = document.createElement('textarea');
+        el.style.display = 'hidden';
+        el.value = result.innerText;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+        wrapper.classList.add("border-blue-500");
+        setTimeout(() => wrapper.classList.remove("border-blue-500"), 300);
+    }
+
+</script>
+
+</html>
