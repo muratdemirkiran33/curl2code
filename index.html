@@ -517,31 +517,31 @@
 
             switch (type) {
                 case 'html':
-                    curlCommand = 'curl -s -H \'Accept: text/html\' -H \'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36\' \'http://httpbin.org/html\'';
+                    curlCommand = 'curl -s -H \'Accept: text/html\' -H \'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36\' \'https://httpbin.org/html\'';
                     break;
                 case 'json':
-                    curlCommand = 'curl -s -H \'Accept: application/json\' -H \'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36\' \'http://httpbin.org/json\'';
+                    curlCommand = 'curl -s -H \'Accept: application/json\' -H \'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36\' \'https://httpbin.org/json\'';
                     break;
                 case 'xml':
-                    curlCommand = 'curl -s -H \'Accept: application/xml\' -H \'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36\' \'http://httpbin.org/xml\'';
+                    curlCommand = 'curl -s -H \'Accept: application/xml\' -H \'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36\' \'https://httpbin.org/xml\'';
                     break;
                 case 'delay':
-                    curlCommand = 'curl -s -H \'Accept: application/json\' -H \'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36\' \'http://httpbin.org/delay/2\'';
+                    curlCommand = 'curl -s -H \'Accept: application/json\' -H \'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36\' \'https://httpbin.org/delay/2\'';
                     break;
                 case 'get':
-                    curlCommand = 'curl -s -H \'Accept: application/json\' -H \'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36\' \'http://httpbin.org/get?param1=value1&param2=value2\'';
+                    curlCommand = 'curl -s -H \'Accept: application/json\' -H \'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36\' \'https://httpbin.org/get?param1=value1&param2=value2\'';
                     break;
                 case 'post':
-                    curlCommand = 'curl -s -X POST -H \'Content-Type: application/json\' -H \'Accept: application/json\' -H \'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36\' --data \'{"name": "John Doe", "email": "john@example.com"}\' \'http://httpbin.org/post\'';
+                    curlCommand = 'curl -s -X POST -H \'Content-Type: application/json\' -H \'Accept: application/json\' -H \'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36\' --data \'{"name": "John Doe", "email": "john@example.com"}\' \'https://httpbin.org/post\'';
                     break;
                 case 'put':
-                    curlCommand = 'curl -s -X PUT -H \'Content-Type: application/json\' -H \'Accept: application/json\' -H \'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36\' --data \'{"id": 123, "name": "Updated Name"}\' \'http://httpbin.org/put\'';
+                    curlCommand = 'curl -s -X PUT -H \'Content-Type: application/json\' -H \'Accept: application/json\' -H \'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36\' --data \'{"id": 123, "name": "Updated Name"}\' \'https://httpbin.org/put\'';
                     break;
                 case 'delete':
-                    curlCommand = 'curl -s -X DELETE -H \'Accept: application/json\' -H \'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36\' \'http://httpbin.org/delete\'';
+                    curlCommand = 'curl -s -X DELETE -H \'Accept: application/json\' -H \'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36\' \'https://httpbin.org/delete\'';
                     break;
                 case 'patch':
-                    curlCommand = 'curl -s -X PATCH -H \'Content-Type: application/json\' -H \'Accept: application/json\' -H \'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36\' --data \'{"name": "Patched Name"}\' \'http://httpbin.org/patch\'';
+                    curlCommand = 'curl -s -X PATCH -H \'Content-Type: application/json\' -H \'Accept: application/json\' -H \'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36\' --data \'{"name": "Patched Name"}\' \'https://httpbin.org/patch\'';
                     break;
             }
 
